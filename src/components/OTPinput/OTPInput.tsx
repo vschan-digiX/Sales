@@ -82,12 +82,12 @@ export default function OTPInput({isOpen, onClose, onPress}: props) {
         </Avatar>
 
         <VStack space={5}>
-          <Text>Please provide your Dealer PIN</Text>
+          <Text bold>Please provide your Dealer PIN</Text>
           <Box>
-            
+          <Text pb={1} color="gray.500" >Dealer Pin Code</Text>
           <HStack space={2} justifyContent={'space-between'}>
             {Array.from({length: NUMBER_OF_INPUTS}, (_, index) => (
-              <Box key={index} w={10}>
+              <Box key={index} flex={1}>
                 {/* BLOCK OTHER INPUT TO BE TOUCHED */}
                 {index !== 0 && (
                   <Box
@@ -167,7 +167,7 @@ export default function OTPInput({isOpen, onClose, onPress}: props) {
               </Box>
             ))}
           </HStack>
-          <Text>Incorrect PIN Please try again</Text>
+            {isError && <Text pt={1} color={"#F04438"}>Incorrect PIN Please try again</Text>}
           </Box>
 
           <Button
