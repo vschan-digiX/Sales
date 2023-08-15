@@ -23,12 +23,10 @@ const AddOn = ({route, navigation}: any) => {
   // const {phone, isDigiPhone} = route.params;
   const phone = '0163319066';
   const isDigiPhone = true;
-  
-  const [isHide, setIsHide] = useState(false)
+
+  const [isHide, setIsHide] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
-
-
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -193,15 +191,8 @@ const AddOn = ({route, navigation}: any) => {
                 <Text variant="h5" bold py="16px">
                   Customer's Subscription
                 </Text>
-                <VStack
-                  mb={'16px'}
-                  rounded={'full'}
-                  bg={'gray.100'}
-                  p={2}
-                  justifyContent="center">
-                  {isDigiPhone && (
-                    <Button.Group>
-                      {paymentTab.map(item => (
+                {isDigiPhone && <Button.Group bg="gray.100" rounded="full" p="1.5" mb={"16px"}>
+                    {paymentTab.map(item => (
                         <Button
                           key={item.id.toString()}
                           onPress={() => {
@@ -214,9 +205,7 @@ const AddOn = ({route, navigation}: any) => {
                           {item.pages}
                         </Button>
                       ))}
-                    </Button.Group>
-                  )}
-                </VStack>
+                </Button.Group>}
                 {renderlist()}
               </Box>
             </Box>
@@ -236,7 +225,7 @@ const AddOn = ({route, navigation}: any) => {
       </Box>
       <Modal
         variant="bottom"
-        isOpen={true}
+        isOpen={false}
         onClose={() => {}}
         accessibilityLabel="Default Modal">
         <Modal.Content variant="bottom">
@@ -258,54 +247,57 @@ const AddOn = ({route, navigation}: any) => {
             <Text variant="h6" bold>
               Overview
             </Text>
-            <Pressable onPress={()=>setIsHide(!isHide)}>
-            <ChevronUpIcon  color="black" />
+            <Pressable onPress={() => setIsHide(!isHide)}>
+              <ChevronUpIcon color="black" />
             </Pressable>
-              
           </HStack>
-          
-         {isHide && <Box>
-            <HStack
-              my={4}
-              justifyContent={'space-between'}
-              alignItems={'center'}>
-              <Text>Subsription Name</Text>
-              <Text color={'gray.600'}>5G Booster + 30GB (RM10)</Text>
-            </HStack>
-            <HStack
-              my={4}
-              justifyContent={'space-between'}
-              alignItems={'center'}>
-              <Text>Users</Text>
-              <Text color={'gray.600'}>5G</Text>
-            </HStack>
-            <HStack
-              my={4}
-              justifyContent={'space-between'}
-              alignItems={'center'}>
-              <Text>Price</Text>
-              <Text color={'gray.600'}>RM 10</Text>
-            </HStack>
-            <HStack
-              my={4}
-              justifyContent={'space-between'}
-              alignItems={'center'}>
-              <Text>Validity</Text>
-              <Text color={'gray.600'}>Valid till end of bill cycle</Text>
-            </HStack>
-            <HStack
-              my={4}
-              justifyContent={'space-between'}
-              alignItems={'center'}>
-              <Text>Auto Renew</Text>
-              <Text color={'gray.600'}>Yes</Text>
-            </HStack>
-          </Box>}
-          {activeTab === 0 ? <Button mb={3} variant={'secondaryGray'}>
-            Unsubscribe
-          </Button> : <Button mb={3}>
-            Renew
-          </Button>}
+
+          {isHide && (
+            <Box>
+              <HStack
+                my={4}
+                justifyContent={'space-between'}
+                alignItems={'center'}>
+                <Text>Subsription Name</Text>
+                <Text color={'gray.600'}>5G Booster + 30GB (RM10)</Text>
+              </HStack>
+              <HStack
+                my={4}
+                justifyContent={'space-between'}
+                alignItems={'center'}>
+                <Text>Users</Text>
+                <Text color={'gray.600'}>5G</Text>
+              </HStack>
+              <HStack
+                my={4}
+                justifyContent={'space-between'}
+                alignItems={'center'}>
+                <Text>Price</Text>
+                <Text color={'gray.600'}>RM 10</Text>
+              </HStack>
+              <HStack
+                my={4}
+                justifyContent={'space-between'}
+                alignItems={'center'}>
+                <Text>Validity</Text>
+                <Text color={'gray.600'}>Valid till end of bill cycle</Text>
+              </HStack>
+              <HStack
+                my={4}
+                justifyContent={'space-between'}
+                alignItems={'center'}>
+                <Text>Auto Renew</Text>
+                <Text color={'gray.600'}>Yes</Text>
+              </HStack>
+            </Box>
+          )}
+          {activeTab === 0 ? (
+            <Button mb={3} variant={'secondaryGray'}>
+              Unsubscribe
+            </Button>
+          ) : (
+            <Button mb={3}>Renew</Button>
+          )}
         </Modal.Content>
       </Modal>
     </>
