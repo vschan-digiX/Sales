@@ -24,7 +24,7 @@ import {InfoCircle, ChevronRight} from '../../assets/icons';
 const Checkout = ({navigation}: {navigation: any}) => {
   return (
     <Box flex={1} bg="white">
-      <Box flex={1} mx={4}>
+      <Box mx={4}>
         <Alert my="16px" variant="info">
           <VStack w="90%">
             <InfoCircle color="#114EBA" width="20px" />
@@ -45,9 +45,11 @@ const Checkout = ({navigation}: {navigation: any}) => {
           justifyContent={'space-between'}
           my={'16px'}>
           <Text bold>Order Summary</Text>
-          <ChevronUpIcon color={'black'} />
         </Box>
-        <Box variant="shadow" pt="0px">
+      </Box>
+
+      {/* Hide for now as Design Change */}
+      {/* <Box variant="shadow" pt="0px">
           <Box variant="listing">
             <Text color={'gray.500'}>Prepaid Reload</Text>
             <Text>RM 15.00</Text>
@@ -72,7 +74,29 @@ const Checkout = ({navigation}: {navigation: any}) => {
             <Text bold>Total</Text>
             <Text bold>RM 15.00</Text>
           </Box>
-        </Box>
+        </Box> */}
+
+      <Box
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        w="full"
+        px={4}
+        py={'16px'}
+        bg="gray.200">
+        <Text>Subscription Type</Text>
+        <Text color={'gray.600'}>Prepaid Reload</Text>
+      </Box>
+      <Box
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        px={4}
+        py={'16px'}>
+        <Text>Total</Text>
+        <Text color={'gray.900'}>RM 15.00</Text>
+      </Box>
+      <Box flex={1} mx={4}>
         <Box
           safeAreaBottom
           pb={'16px'}
