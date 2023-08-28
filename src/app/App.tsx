@@ -28,6 +28,7 @@ import {Avatar, Box, NativeBaseProvider, Pressable, Spacer} from 'native-base';
 import ArrowLeft from '../assets/icons/Arrowleft';
 
 import {History} from '../assets/icons';
+import Internet from '../containers/add-on/Internet';
 
 
 const Stack = createNativeStackNavigator();
@@ -110,7 +111,7 @@ export default function App() {
     <NativeBaseProvider isSSR={false} theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="OTP"
+          initialRouteName="HomeScreen"
           screenOptions={{
             headerBackTitleVisible: false,
             headerTitleAlign: 'center',
@@ -152,6 +153,13 @@ export default function App() {
           <Stack.Screen
             name="AddOn"
             component={AddOn}
+            options={({navigation, route}) => ({
+              headerLeft: ({canGoBack}) => canGoBack && backArrow(navigation),
+            })}
+          />
+            <Stack.Screen
+            name="Internet"
+            component={Internet}
             options={({navigation, route}) => ({
               headerLeft: ({canGoBack}) => canGoBack && backArrow(navigation),
             })}

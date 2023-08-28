@@ -16,13 +16,16 @@ import {
   Modal,
   ChevronDownIcon,
   ChevronUpIcon,
+  Heading,
+  Input,
+  Icon,
 } from 'native-base';
 //Icons
 import ArrowLeft from '../../assets/icons/Arrowleft';
 import ModalError from '../../components/ModalError/ModalError';
 import {InfoCircle,Close, ChevronRight, History} from '../../assets/icons';
 
-const AddOn = ({route, navigation}: any) => {
+const Internet = ({route, navigation}: any) => {
   const {phone, isDigiPhone} = route.params;
   const [isModalError, setIsModalError] = useState(false)
   const [bottomModal, setbottomModal] = useState(false);
@@ -43,12 +46,12 @@ const AddOn = ({route, navigation}: any) => {
   const justList = [
     {
       id: '1',
-      tag: 'Malaysiaku Deals',
+      tag: 'Recommended',
       type: 'Auto-Renew',
-      title: '5G Booster',
+      title: '1 Hour',
       price : 5,
       isPopular: true,
-      validity: 'Valid for 5 Days',
+      validity: 'Unlimited Internet',
       expire: 'Expired on: 18/07/2023',
     },
     {
@@ -90,17 +93,14 @@ const AddOn = ({route, navigation}: any) => {
   const paymentTab = [
     {
       id: 0,
-      pages: 'just4ME™',
+      pages: 'Popular',
     },
     {
       id: 1,
-      pages: 'Active',
-    },
-    {
-      id: 2,
-      pages: 'Past',
+      pages: 'All',
     },
   ];
+
 
   const rowsActive = [];
   for (let i = 0; i < justList.length; i += 2) {
@@ -152,7 +152,7 @@ const AddOn = ({route, navigation}: any) => {
                 {/* Tag */}
                 {data.isPopular  ? (
                   <Badge
-                    variant={"indigo"}
+                    variant={"popular"}
                     position="absolute"
                     size={'md'}
                     top="-12">
@@ -165,7 +165,6 @@ const AddOn = ({route, navigation}: any) => {
         </HStack>
       ));
     }else{
-
       return list.map(data => {
         return (
           <Box key={data.id} variant={'shadow'} mb={5}>
@@ -204,72 +203,18 @@ const AddOn = ({route, navigation}: any) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <Box flex={1}>
-            <Box borderRadius={'5px'} mx="17px" bg="#FFF">
-              <HStack py={5} justifyContent="space-evenly">
-                <VStack flex={1} paddingLeft={5}>
-                  <Text color={'#98A2B3'}>Mobile</Text>
-                  <Text mb={1} bold>
-                    {phone}
-                  </Text>
-                  <HStack space={1}>
-                    <Badge variant={isDigiPhone ? 'yellow' : 'celcomBlue'}>
-                      {isDigiPhone ? 'Digi' : 'Celcom'}
-                    </Badge>
-                    <Badge variant={'success'}>Active</Badge>
-                  </HStack>
-                </VStack>
-                <Divider h={'full'} orientation="vertical" />
-                <VStack flex={1} paddingLeft={5}>
-                  <Text color={'#98A2B3'}>Plan</Text>
-                  <Text mb={1} bold>
-                    biGBonus 48
-                  </Text>
-                  <Text color="primary.600" variant="h8">
-                    Expiry on 31 July 2023
-                  </Text>
-                </VStack>
-              </HStack>
-              <VStack py={5} pl={5} bg={'#F2F4F7'}>
-                <Text color={'#98A2B3'}>Prepaid Balance</Text>
-                <Text variant={'h4'} bold>
-                  RM5.00
-                </Text>
-              </VStack>
-            </Box>
-
             <Box flex={1}  bg="#F9FAFB">
               <Box  bg="#E8EFFD" px='17px' pb="16px">
                 <Text variant="h5" bold py="16px">
-                  Proceed to Discover Add-Ons
+                  Select Internet
                 </Text>
-                <HStack justifyContent='space-evenly'>
-                  <Pressable width={'70px'} height={'70px'} bg="#F9FAFB" m={1}  p={2} 
-                    onPress={() => navigation.navigate('Internet', {
-                      phone: phone,
-                      isDigiPhone: phone.includes('016'),
-                    })
-                    }>
-                    <InfoCircle />
-                    <Text>Internet</Text>
-                  </Pressable>
-                  <Box width={'70px'} height={'70px'} bg="#F9FAFB" m={1}  p={2}>
-                    <InfoCircle />
-                    <Text>IDD</Text>
-                  </Box>
-                  <Box width={'70px'} height={'70px'} bg="#F9FAFB" m={1}  p={2}>
-                    <InfoCircle />
-                    <Text>Roaming</Text>
-                  </Box>
-                  <Box width={'70px'} height={'70px'} bg="#F9FAFB" m={1}  p={2}>
-                    <InfoCircle />
-                    <Text>Others</Text>
-                  </Box>
-                </HStack>
-                </Box>
-                <Box mx="17px"  bg="#F9FAFB">
-                <Text variant="h5" bold py="16px">
-                  Customer's Add On
+                <Text variant="b2" pb="10px">
+                  Search for customer’s preferred Internet Add On.
                 </Text>
+                <VStack w="100%" space={5} alignSelf="center" mb={"16px"}>
+                  <Input placeholder="Search" width="100%" borderRadius="10" py="3" px="1" fontSize="14" InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" />}/>
+                </VStack>
+
                 {isDigiPhone && <Button.Group bg="gray.100" rounded="full" p="1.5" mb={"16px"}>
                     {paymentTab.map(item => (
                         <Button
@@ -285,8 +230,13 @@ const AddOn = ({route, navigation}: any) => {
                         </Button>
                       ))}
                 </Button.Group>}
-                {renderlist()}
               </Box>
+              <Box  px='17px' pb="16px">
+                <Text variant="h5" bold py="16px">
+                  Ultra House Pass
+                </Text>
+                {renderlist()}
+                </Box>
             </Box>
           </Box>
         </ScrollView>
@@ -412,4 +362,4 @@ const AddOn = ({route, navigation}: any) => {
     </>
   );
 };
-export default AddOn;
+export default Internet;

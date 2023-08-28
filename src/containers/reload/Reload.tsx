@@ -168,7 +168,7 @@ const Reload = ({route , navigation}: any) => {
                                   variant="popular"
                                   position="absolute"
                                   size={'md'}
-                                  top="-10">
+                                  top="-12">
                                   {amount.tag}
                                 </Badge>
                               ) : null}
@@ -189,7 +189,7 @@ const Reload = ({route , navigation}: any) => {
           <Box>
             <Text variant="body2">Total Payment</Text>
             <Text variant="h6" bold color="primary.600">
-              RM {amount || "XXX"}
+              RM {amount.toFixed(2) || "XXX"}
             </Text>
           </Box>
           <Button isDisabled={!selectAmount} onPress={() => navigation.navigate('Checkout', {isDigiPhone})}>

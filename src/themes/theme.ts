@@ -258,6 +258,13 @@ const theme = extendTheme({
           borderWidth: 1,
           borderColor: 'gray.300',
         },
+        borderWithoutPadding: {
+          paddingTop:'12px',
+          paddingBottom:'8px',
+          borderRadius: '10px',
+          borderWidth: 1,
+          borderColor: 'gray.300',        
+        },
         selection: {
           width: '50%',
           padding: '16px',
@@ -323,6 +330,11 @@ const theme = extendTheme({
         destructive: {
           bg: 'error.600',
           _text: { color: 'white' },
+        },
+        destructiveOutline: {
+          _text: { color: 'error.600' },
+          borderColor: 'error.600',
+          borderWidth: 1,
         },
         tab: {
           paddingLeft: '8px',

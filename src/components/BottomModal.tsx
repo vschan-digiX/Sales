@@ -11,10 +11,8 @@ type props = {
   onPress: (text:string) => void;
 };
 
-
-
 const BottomModal = ({isOpen, onClose, onPress}: props) => {
-  const [text, setText] = useState("")
+  const [text, setText] = useState('0163456789')
   return (
     <Modal
       variant="bottom"
@@ -28,7 +26,7 @@ const BottomModal = ({isOpen, onClose, onPress}: props) => {
             <Text variant="h6" bold>
               Enter Mobile Number
             </Text>
-            <FloatingInput changeText={text => setText(text)} type="number" label="Default Input" placeholder="Default Input" />
+            <FloatingInput changeText={text => setText(text)} type="number" value={text} label="Mobile Number" placeholder="Mobile Number" />
             <Button isDisabled={!text} onPress={()=> onPress(text)} mr="1" mb="2">
               Procceed
             </Button>

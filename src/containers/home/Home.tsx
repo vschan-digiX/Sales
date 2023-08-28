@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Platform,
   ScrollView,
@@ -8,23 +8,24 @@ import {
 } from 'react-native';
 
 // Native Base Components
-import {useTheme, Pressable, Text, Box, HStack, VStack} from 'native-base';
+import { useTheme, Pressable, Text, Box, HStack, VStack } from 'native-base';
 // Icons
-import {FileMedal} from '../../assets/icons';
-import {File} from '../../assets/icons';
-import {Passcode} from '../../assets/icons';
-import {AutoBilling} from '../../assets/icons';
-import {CalendarRefresh} from '../../assets/icons';
-import {History} from '../../assets/icons';
-import {CurrencyRefresh} from '../../assets/icons';
+import { FileMedal } from '../../assets/icons';
+import { File } from '../../assets/icons';
+import { Passcode } from '../../assets/icons';
+import { AutoBilling } from '../../assets/icons';
+import { CalendarRefresh } from '../../assets/icons';
+import { History } from '../../assets/icons';
+import { CurrencyRefresh } from '../../assets/icons';
 
 import BottomModal from '../../components/BottomModal';
 
 const max_length = 11;
 
-const Home = ({navigation}: {navigation: any}) => {
+const Home = ({ navigation }: { navigation: any }) => {
   const [bottomModal, setbottomModal] = useState(false);
-  let screen = "Reload"
+  const [screen, setScreen] = useState('');
+
   // Mock Data
   const listing = [
     {
@@ -33,7 +34,7 @@ const Home = ({navigation}: {navigation: any}) => {
       icons: <FileMedal color="#000000" />,
     },
     {
-      name: 'Bottom',
+      name: 'Add On',
       pages: 'Add-Ons',
       icons: <File color="#000000" />,
     },
@@ -80,11 +81,11 @@ const Home = ({navigation}: {navigation: any}) => {
       <Box px="3" py="4">
         <Box mx="16px" my="50px">
           <Text bold variant="h7" mb="16px">
-            Reload
+            Quick Access
           </Text>
           <VStack justifyContent="center">
             <HStack>
-              <Pressable onPress={() => {screen = "Reload" ; setbottomModal(true)}}>
+              <Pressable onPress={() => {  setScreen('Reload'); setbottomModal(true); }}>
                 <Box width="85px" alignItems="center" mb="16px">
                   <FileMedal color="#000000" />
                   <Text variant="label" pt={2} textAlign="center">
@@ -92,7 +93,7 @@ const Home = ({navigation}: {navigation: any}) => {
                   </Text>
                 </Box>
               </Pressable>
-              <Pressable onPress={() => {screen = "AddOn" ; setbottomModal(true)}}>
+              <Pressable onPress={() => { setScreen('AddOn'); setbottomModal(true); }}>
                 <Box width="85px" alignItems="center" mb="16px">
                   <Passcode color="#000000" />
                   <Text variant="label" pt={2} textAlign="center">
@@ -117,6 +118,17 @@ const Home = ({navigation}: {navigation: any}) => {
                 </Box>
               </Pressable>
             </HStack>
+
+            <HStack>
+              <Pressable onPress={() => navigation.navigate('Cheatsheet')}>
+                <Box width="85px" alignItems="center" mb="16px">
+                  <AutoBilling color="#000000" />
+                  <Text variant="label" pt={2} textAlign="center">
+                    CheatSheet
+                  </Text>
+                </Box>
+              </Pressable>
+            </HStack>
           </VStack>
         </Box>
       </Box>
@@ -126,8 +138,7 @@ const Home = ({navigation}: {navigation: any}) => {
         onClose={setbottomModal}
         onPress={text => {
           setbottomModal(false);
-          
-          navigation.navigate('Reload', {
+          navigation.navigate(screen, {
             phone: text,
             isDigiPhone: text.includes('016'),
           });

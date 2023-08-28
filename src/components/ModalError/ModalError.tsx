@@ -26,11 +26,12 @@ type props = {
   onPress: () => void;
   title: string;
   body: string;
+  button_yes:string
 };
 
 const NUMBER_OF_INPUTS = 6;
 
-export default function ModalError({isOpen, onClose, onPress, title , body}: props) {
+export default function ModalError({isOpen, onClose, onPress, title , body, button_yes}: props) {
 
 
   return (
@@ -56,10 +57,11 @@ export default function ModalError({isOpen, onClose, onPress, title , body}: pro
             variant={"destructive"}
             onPress={() => {
               console.log('hello world');
+              onClose(false);
             }}
             mr="1"
             mb="2">
-            Okay
+            {button_yes}
           </Button>
       </Modal.Content>
     </Modal>
